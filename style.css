@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'PAC-FONT';
+    src: url('pac-font/pac-font.ttf') format('truetype');
+}
+
+body {
+    background-color:#232323;
+}
+
+#app {
+    width: 610px;
+    margin: 2rem auto;
+    border:5px dashed #eee;
+}
+
+header {
+    padding:2rem;
+    color:#ff0;
+    font-size: 42px;
+}
+
+canvas {
+    border-top:5px dashed #eee;
+    border-bottom:5px dashed #eee;
+    margin-bottom:5px;
+}
+
+.pacman {
+    font-family: 'PAC-FONT', sans-serif;
+}
+
+footer {
+    margin-top:-10px;
+    padding:1rem;
+    color:#ccc;
+}
