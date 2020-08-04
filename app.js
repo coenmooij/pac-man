@@ -1,7 +1,7 @@
-import { DIRECTION } from './lib/direction.js';
+import Controller from './lib/controller.js';
 import Grid from './lib/grid.js';
 import Maze from './lib/maze.js';
-import PacMan, { RADIUS } from './lib/pac-man.js';
+import PacMan from './lib/pac-man.js';
 
 const SPEED = 150;
 const SIZE = 600;
@@ -10,66 +10,33 @@ let context;
 let pacMan;
 let grid;
 let maze;
+let controller;
 
 window.onload = function () {
+    // Get the context
     const canvas = document.getElementById('canvas');
     context = canvas.getContext('2d');
-    document.addEventListener('keydown', onKeydown);
-    initialize();
-    setInterval(update, 1000 / SPEED);
-}
 
-function onKeydown(event) {
-    let direction;
-    switch (event.keyCode) {
-        case 37:
-            direction = DIRECTION.LEFT;
-            break;
-        case 38:
-            direction = DIRECTION.UP;
-            break;
-        case 39:
-            direction = DIRECTION.RIGHT;
-            break;
-        case 40:
-            direction = DIRECTION.DOWN;
-            break;
-    }
-    pacMan.setDirection(direction);
+    // Setup the game
+    initialize();
+
+    // Listen to inputs and start the game
+    document.addEventListener('keydown', (event) => {
+        controller.onKeydown(event);
+    });
+    setInterval(update, 1000 / SPEED);
 }
 
 function initialize() {
     maze = new Maze(context);
     grid = new Grid();
-    pacMan = new PacMan(context, SIZE / 2, SIZE / 2, DIRECTION.RIGHT);
+    pacMan = new PacMan(context, SIZE / 2, SIZE / 2);
+    controller = new Controller(grid, pacMan);
 }
 
 function update() {
-    movePacman();
+    controller.move();
     maze.reset();
     maze.paint();
     pacMan.paint();
 }
-
-
-function movePacman() {
-    // TODO : Implement before / after checking for new location
-    // TODO : Implement up & down
-    switch (pacMan.direction) {
-        case DIRECTION.RIGHT:
-            if (!grid.isValidPosition(pacMan.x + 1, pacMan.y)) {
-                break;
-            }
-            pacMan.x += 1;
-            break;
-        case DIRECTION.LEFT:
-            if (!grid.isValidPosition(pacMan.x - 1, pacMan.y)) {
-                break;
-            }
-            pacMan.x -= 1;
-            if (pacMan.x < RADIUS / 2) {
-            }
-            break;
-    }
-}
-
