@@ -38,6 +38,7 @@ function update() {
     controller.move();
     maze.reset();
     maze.paint();
-    grid.paint(); // TODO : only enable for debug
+    // grid.paint(); // TODO : only enable for debug
+    pacMan.bite();
     pacMan.paint();
 }
