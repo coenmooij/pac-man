@@ -22,7 +22,7 @@ window.onload = function () {
     document.addEventListener('keydown', (event) => {
         controller.onKeyDown(event);
     });
-    setInterval(update, 1);
+    setInterval(update, 5);
 }
 
 function initialize() {
@@ -35,8 +35,8 @@ function initialize() {
 function update() {
     controller.move();
     maze.reset();
-    maze.paint();
-    // grid.paint(); // TODO : only enable for debug
+    maze.paint(); // TODO : Paint once and remove pacman previous position, check ball as well
+    grid.paint(); // TODO : only enable for debug // TODO : Check speed
     pacMan.bite();
     pacMan.paint();
 }
