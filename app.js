@@ -4,8 +4,6 @@ import Grid from './lib/grid.js';
 import Maze from './lib/maze.js';
 import PacMan from './lib/pac-man.js';
 
-const SPEED = 150;
-
 let context;
 let pacMan;
 let grid;
@@ -24,7 +22,7 @@ window.onload = function () {
     document.addEventListener('keydown', (event) => {
         controller.onKeyDown(event);
     });
-    setInterval(update, 1000 / SPEED);
+    setInterval(update, 1);
 }
 
 function initialize() {
