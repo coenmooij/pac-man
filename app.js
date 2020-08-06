@@ -1,4 +1,4 @@
-import { CANVAS } from './lib/canvas.js';
+import { CANVAS } from './lib/constants/canvas.js';
 import Controller from './lib/controller.js';
 import Grid from './lib/grid.js';
 import PacMan from './lib/pac-man.js';
@@ -26,14 +26,13 @@ window.onload = function () {
 
 function initialize() {
     grid = new Grid(context);
-    pacMan = new PacMan(context, CANVAS.GAP, CANVAS.GAP); // TODO : Set starting point properly
+    pacMan = new PacMan(context);
     controller = new Controller(grid, pacMan);
 }
 
 function update() {
+    pacMan.reset();
     controller.move();
-    grid.reset();
-    grid.paint();
     pacMan.bite();
     pacMan.paint();
 }
