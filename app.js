@@ -1,7 +1,6 @@
 import { CANVAS } from './lib/canvas.js';
 import Controller from './lib/controller.js';
 import Grid from './lib/grid.js';
-import Maze from './lib/maze.js';
 import PacMan from './lib/pac-man.js';
 
 let context;
@@ -26,7 +25,6 @@ window.onload = function () {
 }
 
 function initialize() {
-    maze = new Maze(context);
     grid = new Grid(context);
     pacMan = new PacMan(context, CANVAS.GAP, CANVAS.GAP); // TODO : Set starting point properly
     controller = new Controller(grid, pacMan);
@@ -34,9 +32,8 @@ function initialize() {
 
 function update() {
     controller.move();
-    maze.reset();
-    maze.paint(); // TODO : Paint once and remove pacman previous position, check ball as well
-    grid.paint(); // TODO : only enable for debug // TODO : Check speed
+    grid.reset();
+    grid.paint();
     pacMan.bite();
     pacMan.paint();
 }
