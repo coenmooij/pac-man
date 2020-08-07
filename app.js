@@ -4,7 +4,7 @@ import Maze from './lib/maze.js';
 import PacManPainter from './lib/pac-man-painter.js';
 import PacMan from './lib/pac-man.js';
 
-const FPS = 24;
+const FPS = 120;
 
 let context;
 let pacMan;
@@ -45,8 +45,9 @@ function update() {
     controller.move();
     pacMan.bite();
 
-    // For performance we only repaint the part of the board that will change
-    // TODO : Add ghost locations to repaint
     mazePainter.repaint();
+
+    // TODO : Add ghost locations to repaint
+
     pacManPainter.paint();
 }
