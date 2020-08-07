@@ -8,7 +8,7 @@ body {
 }
 
 #app {
-    width: 610px;
+    width: 570px;
     margin: 2rem auto;
     border: 5px dashed #eee;
 }
@@ -22,7 +22,6 @@ header {
 canvas {
     border-top: 5px dashed #eee;
     border-bottom: 5px dashed #eee;
-    padding: 0 20px;
     margin-bottom: 5px;
 }
 
