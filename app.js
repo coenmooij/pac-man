@@ -44,10 +44,9 @@ function initialize() {
 function update() {
     controller.move();
     pacMan.bite();
-
-    mazePainter.repaint();
+    mazePainter.repaintArea(pacMan.x, pacMan.y);
+    pacManPainter.paint();
 
     // TODO : Add ghost locations to repaint
-
-    pacManPainter.paint();
+    // pacManPainter.paintHitbox();
 }
