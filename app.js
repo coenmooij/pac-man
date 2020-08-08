@@ -45,12 +45,12 @@ function initialize() {
 }
 
 function update() {
+    mazePainter.repaintAreaAt(pacMan.x, pacMan.y);
     controller.move();
     pacMan.bite();
     // TODO : Track and remove pellets
     // TODO : Update score
     // TODO : Repaint ghosts and their area
     // TODO : Collect all cells to repaint and do it at once for optimization
-    mazePainter.repaintArea(pacMan.x, pacMan.y);
     pacManPainter.paint();
 }
