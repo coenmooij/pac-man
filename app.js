@@ -1,43 +1,53 @@
+import { CONSUMED_FOOD } from './lib/constants/consumed-food.js';
 import Controller from './lib/controller.js';
-import MazePainter from './lib/maze-painter.js';
+import MazePainter from './lib/view/maze-painter.js';
 import Maze from './lib/maze.js';
-import PacManPainter from './lib/pac-man-painter.js';
+import PacManPainter from './lib/view/pac-man-painter.js';
 import PacMan from './lib/pac-man.js';
+import ScoreBoard from './lib/score-board.js';
+import ScoreBoardPainter from './lib/view/score-board-painter.js';
 
 const FPS = 120;
 
-let context;
-let pacMan;
-let maze;
+let mazeContext, maze, mazePainter;
+let pacMan, pacManPainter;
+let scoreboardContext, scoreBoard, scoreBoardPainter;
 let controller;
-let mazePainter;
-let pacManPainter;
 
 window.onload = function () {
     // Get the context
-    const canvas = document.getElementById('canvas');
-    context = canvas.getContext('2d');
+    let canvas = document.getElementById('maze');
+    mazeContext = canvas.getContext('2d');
+
+    canvas = document.getElementById('scoreboard');
+    scoreboardContext = canvas.getContext('2d');
 
     // Setup the game
     initialize();
 
-    // Listen to inputs and start the game
+    // Listen to input
     document.addEventListener('keydown', (event) => {
         controller.onKeyDown(event);
     });
+
+    // Start the game interval
     setInterval(update, 1000 / FPS);
 }
 
 function initialize() {
     maze = new Maze();
-    mazePainter = new MazePainter(context, maze);
+    mazePainter = new MazePainter(mazeContext, maze);
     mazePainter.paint();
 
     pacMan = new PacMan(maze);
-    pacManPainter = new PacManPainter(context, pacMan);
+    pacManPainter = new PacManPainter(mazeContext, pacMan);
     pacManPainter.paint();
 
-    // TODO : Add score and life tracker
+    scoreBoard = new ScoreBoard();
+    scoreBoardPainter = new ScoreBoardPainter(scoreboardContext, scoreBoard);
+    scoreBoardPainter.paint();
+
+    // TODO : Add  life tracker
     // TODO : Add ghosts and painter
 
     controller = new Controller(maze, pacMan);
@@ -47,9 +57,11 @@ function initialize() {
 function update() {
     mazePainter.repaintAreaAt(pacMan.x, pacMan.y);
     controller.move();
-    pacMan.bite();
+    const consumedFood = pacMan.bite();
+    scoreBoard.processConsumedFood(consumedFood);
+    scoreBoardPainter.repaint();
+
     // TODO : Track and remove pellets
-    // TODO : Update score
     // TODO : Repaint ghosts and their area
     // TODO : Collect all cells to repaint and do it at once for optimization
     pacManPainter.paint();

@@ -3,6 +3,11 @@
     src: url('pac-font/pac-font.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'press-start-regular';
+    src: url('press-start/press-start.regular.ttf') format('truetype');
+}
+
 body {
     background-color: #232323;
 }
@@ -19,7 +24,7 @@ header {
     font-size: 42px;
 }
 
-canvas {
+.game {
     border-top: 5px dashed #eee;
     border-bottom: 5px dashed #eee;
     margin-bottom: 5px;

@@ -3,8 +3,9 @@
 <head>
     <title>PAC-MAN</title>
     <link rel="stylesheet" href="bootstrap/bootstrap-4.5.0.min.css">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico">
 </head>
 <body>
 
@@ -17,7 +18,10 @@
         </h1>
     </header>
 
-    <canvas id="canvas" width="560" height="620"></canvas>
+    <div class="game">
+        <canvas id="scoreboard" width="560" height="80"></canvas>
+        <canvas id="maze" width="560" height="620"></canvas>
+    </div>
 
     <h2 class="pacman text-center text-light">0 0 0 9 0 0 0 0 9 0 0 0 1 0 0 0 0 9 0 0</h2>
     <footer class="text-center">
