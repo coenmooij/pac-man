@@ -33,9 +33,12 @@ function initialize() {
     mazePainter = new MazePainter(context, maze);
     mazePainter.paint();
 
-    pacMan = new PacMan();
+    pacMan = new PacMan(maze);
     pacManPainter = new PacManPainter(context, pacMan);
     pacManPainter.paint();
+
+    // TODO : Add score and life tracker
+    // TODO : Add ghosts and painter
 
     controller = new Controller(maze, pacMan);
 
@@ -44,9 +47,10 @@ function initialize() {
 function update() {
     controller.move();
     pacMan.bite();
+    // TODO : Track and remove pellets
+    // TODO : Update score
+    // TODO : Repaint ghosts and their area
+    // TODO : Collect all cells to repaint and do it at once for optimization
     mazePainter.repaintArea(pacMan.x, pacMan.y);
     pacManPainter.paint();
-
-    // TODO : Add ghost locations to repaint
-    // pacManPainter.paintHitbox();
 }
